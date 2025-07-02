@@ -5,6 +5,7 @@ import { BookOpen, ChevronLeft } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import { z } from 'zod/v4'
 
 import { Button } from '@/components/ui/button'
@@ -19,6 +20,8 @@ import {
 import { Input } from '@/components/ui/input'
 import { ROUTES } from '@/constants/routes'
 import { authClient } from '@/lib/auth-client'
+
+import { translateMessageApi } from '../../utils/tranlate-message-api'
 
 const formSchema = z.object({
   name: z.string().min(3, {
@@ -56,14 +59,22 @@ export const SignUpContainer = () => {
           onSuccess: () => {
             router.push(ROUTES.DASHBOARD.ROOT)
           },
-          onError: error => {
-            console.error('Erro ao criar conta:', error)
+          onError: async error => {
+            const translatedMessage = await translateMessageApi({
+              message: error.error.message,
+            })
+            toast.error('Erro ao criar conta', {
+              description: translatedMessage,
+            })
           },
         }
       )
     } catch (error) {
-      console.error('Erro ao criar conta:', error)
-      // Adicionar feedback de erro para o usuário
+      // eslint-disable-next-line no-console
+      console.log(error)
+      toast.error('Erro ao criar conta', {
+        description: 'Por favor, tente novamente.',
+      })
     }
   }
 

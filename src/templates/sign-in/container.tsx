@@ -5,6 +5,7 @@ import { BookOpen, ChevronLeft } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import { z } from 'zod'
 
 import { Button } from '@/components/ui/button'
@@ -19,6 +20,8 @@ import {
 import { Input } from '@/components/ui/input'
 import { ROUTES } from '@/constants/routes'
 import { authClient } from '@/lib/auth-client'
+
+import { translateMessageApi } from '../../utils/tranlate-message-api'
 
 const formSchema = z.object({
   email: z.string().email({
@@ -49,16 +52,25 @@ export const SignInContainer = () => {
         },
         {
           onSuccess: () => {
+            toast.success('Login realizado com sucesso')
             router.push(ROUTES.DASHBOARD.ROOT)
           },
-          onError: error => {
-            console.error('Erro ao fazer login:', error)
+          onError: async error => {
+            const translatedMessage = await translateMessageApi({
+              message: error.error.message,
+            })
+            toast.error('Erro ao fazer login', {
+              description: translatedMessage,
+            })
           },
         }
       )
     } catch (error) {
-      console.error('Erro ao fazer login:', error)
-      // Adicionar feedback de erro para o usuário
+      // eslint-disable-next-line no-console
+      console.log(error)
+      toast.error('Erro ao fazer login', {
+        description: 'Por favor, tente novamente.',
+      })
     }
   }
 
