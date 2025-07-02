@@ -17,6 +17,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { ROUTES } from '@/constants/routes'
 import { authClient } from '@/lib/auth-client'
 
 const formSchema = z.object({
@@ -48,7 +49,7 @@ export default function SignIn() {
         },
         {
           onSuccess: () => {
-            router.push('/dashboard')
+            router.push(ROUTES.DASHBOARD.ROOT)
           },
           onError: error => {
             console.error('Erro ao fazer login:', error)
@@ -65,7 +66,7 @@ export default function SignIn() {
     <div className='min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 p-4'>
       <div className='w-full max-w-md'>
         <div className='flex justify-center mb-8'>
-          <Link href='/' className='flex items-center space-x-2'>
+          <Link href={ROUTES.HOME} className='flex items-center space-x-2'>
             <div className='w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center'>
               <BookOpen className='w-6 h-6 text-white' />
             </div>
@@ -144,7 +145,7 @@ export default function SignIn() {
 
         <div className='mt-8 text-center'>
           <Link
-            href='/'
+            href={ROUTES.HOME}
             className='inline-flex items-center text-sm text-gray-600 hover:text-blue-600'
           >
             <ChevronLeft className='w-4 h-4 mr-1' />

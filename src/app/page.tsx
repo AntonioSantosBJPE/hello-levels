@@ -13,6 +13,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { ROUTES } from '@/constants/routes'
 import { authClient } from '@/lib/auth-client'
 
 export default function Home() {
@@ -42,14 +43,14 @@ export default function Home() {
 
   const handleGetStarted = () => {
     if (user) {
-      router.push('/dashboard')
+      router.push(ROUTES.DASHBOARD.ROOT)
     } else {
-      router.push('/sign-up')
+      router.push(ROUTES.SIGN_UP)
     }
   }
 
   const handleSignIn = () => {
-    router.push('/sign-in')
+    router.push(ROUTES.SIGN_IN)
   }
 
   if (loading) {
@@ -77,7 +78,7 @@ export default function Home() {
           <div className='flex items-center space-x-4'>
             {user ? (
               <Button
-                onClick={() => router.push('/dashboard')}
+                onClick={() => router.push(ROUTES.DASHBOARD.ROOT)}
                 className='bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700'
               >
                 Dashboard
