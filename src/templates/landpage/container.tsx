@@ -4,6 +4,7 @@ import { ArrowRight, BookOpen, CheckCircle, Target, Video } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
+import { Logo } from '@/components/logo'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -67,12 +68,7 @@ export const LandpageContainer = () => {
       <header className='container mx-auto px-4 py-6'>
         <nav className='flex items-center justify-between'>
           <div className='flex items-center space-x-2'>
-            <div className='w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center'>
-              <BookOpen className='w-5 h-5 text-white' />
-            </div>
-            <span className='text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'>
-              Hello Levels
-            </span>
+            <Logo size='lg' />
           </div>
 
           <div className='flex items-center space-x-4'>
@@ -267,12 +263,7 @@ export const LandpageContainer = () => {
       {/* Footer */}
       <footer className='container mx-auto px-4 py-12 border-t border-gray-200'>
         <div className='flex flex-col md:flex-row items-center justify-between'>
-          <div className='flex items-center space-x-2 mb-4 md:mb-0'>
-            <div className='w-6 h-6 bg-gradient-to-r from-blue-600 to-purple-600 rounded flex items-center justify-center'>
-              <BookOpen className='w-4 h-4 text-white' />
-            </div>
-            <span className='text-lg font-semibold'>Hello Levels</span>
-          </div>
+          <Logo size='sm' />
 
           <div className='flex items-center space-x-6 text-sm text-gray-600'>
             <span>

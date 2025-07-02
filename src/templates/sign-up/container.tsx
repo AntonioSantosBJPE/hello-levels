@@ -1,13 +1,14 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { BookOpen, ChevronLeft } from 'lucide-react'
+import { ChevronLeft } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod/v4'
 
+import { Logo } from '@/components/logo'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -82,14 +83,7 @@ export const SignUpContainer = () => {
     <div className='min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 p-4'>
       <div className='w-full max-w-md'>
         <div className='flex justify-center mb-8'>
-          <Link href={ROUTES.HOME} className='flex items-center space-x-2'>
-            <div className='w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center'>
-              <BookOpen className='w-6 h-6 text-white' />
-            </div>
-            <span className='text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'>
-              Hello Levels
-            </span>
-          </Link>
+          <Logo size='lg' />
         </div>
 
         <div className='bg-white p-8 rounded-xl shadow-lg'>
